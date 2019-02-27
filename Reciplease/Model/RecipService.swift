@@ -11,6 +11,7 @@ import Alamofire
 
 class RecipService {
 
+    let constant = Constants()
     private var recipSession: RecipSession
     init(recipSession: RecipSession = RecipSession()) {
         self.recipSession = recipSession
@@ -18,13 +19,13 @@ class RecipService {
 
     
     func getRecips(allowedIngreString: String, completionHandler: @escaping(Bool, Recip?)-> Void) {
-        let appId: String = "766a10d9"
-        let myAPI: String = "cf1edca9e7aa2fecc27e137cd05b2858"
+        let appId: String = constant.appId
+        let myAPI: String = constant.myAPI
         
         let urlString = "http://api.yummly.com/v1/api/recipes?_app_id=\(appId)&_app_key=\(myAPI)&requirePictures=true\(allowedIngreString)"
         
         guard let url = URL(string: urlString) else { return }
-        
+        print(url)
         recipSession.request(url: url) { responseData in
             
                 guard responseData.response?.statusCode == 200 else {
@@ -45,8 +46,8 @@ class RecipService {
     
     func getRecipDetail(id: String, completionHandler: @escaping(Bool, RecipDetail?) -> Void) {
         
-        let appId: String = "766a10d9"
-        let myAPI: String = "cf1edca9e7aa2fecc27e137cd05b2858"
+        let appId: String = constant.appId
+        let myAPI: String = constant.myAPI
         
         let urlStringDetailAPI = "http://api.yummly.com/v1/api/recipe/\(id)?_app_id=\(appId)&_app_key=\(myAPI)"
 

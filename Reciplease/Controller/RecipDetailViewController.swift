@@ -15,8 +15,7 @@ class RecipDetailViewController: UIViewController {
     var recipDetailList = [RecipDetail]()
     var recipDetail: RecipDetail?
     var recip: Match?
-    var recipFavorite = [RecipData]()
-
+    var recipsFavorite = [RecipEntity]()
 
     @IBOutlet weak var recipDetailTableView: UITableView!
     @IBOutlet weak var recipDetailImageView: GradientImageView!
@@ -24,32 +23,80 @@ class RecipDetailViewController: UIViewController {
     @IBOutlet weak var recipDetailRatingLabel: UILabel!
     @IBOutlet weak var recipDetailTimeLabel: UILabel!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "star"), style: .plain, target: self, action: #selector(saveRecip))
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         self.update()
-        recipFavorite = RecipData.all
+        recipsFavorite = RecipEntity.fetchAll()
+        setRightButtonItem()
     }
     
-    @objc private func saveRecip() {
-        let recipData = RecipData(context: AppDelegate.viewContext)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.update()
+        recipsFavorite = RecipEntity.fetchAll()
+        setRightButtonItem()
+    }
+
+    private func setRightButtonItem() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "star"), style: .plain, target: self, action: #selector(favoriteButtonTapped))
+        if RecipEntity.checkRecipSavedInData(id: recipDetail?.id ?? "") {
+            navigationItem.rightBarButtonItem?.tintColor = .red
+        } else {
+            navigationItem.rightBarButtonItem?.tintColor = .white
+        }
+    }
+    
+    @objc private func favoriteButtonTapped() {
+        if RecipEntity.checkRecipSavedInData(id: recipDetail?.id ?? "") {
+            deleteRecip()
+        } else {
+            saveRecip()
+        }
+    }
+    
+    private func deleteRecip() {
+        RecipEntity.deleteRecipSelected(id: recipDetail?.id ?? "")
+        recipsFavorite = RecipEntity.fetchAll()
+        presentAlert(message: "Your recip has been deleted in the favorite")
+        navigationItem.rightBarButtonItem?.tintColor = .white
+    }
+    
+    private func saveRecip() {
+        let recipData = RecipEntity(context: AppDelegate.viewContext)
         if let recip = recip, let recipDetail = recipDetail {
             recipData.id = recip.id
             recipData.name = recip.recipeName
-            recipData.ingredients = recip.ingredients.joined(separator: ", ")
-            recipData.like = String(recip.rating)
             recipData.duration = recip.totalTimeInSeconds.timeInHoursandMinutes
-            recipData.image = recip.smallImageUrls[0]
+            recipData.like = String(recip.rating)
             recipData.source = recipDetail.source.sourceRecipeUrl
-            recipData.ingredientLines = recipDetail.ingredientLines.joined(separator: ", ")
-            recipData.imageDetail = recipDetail.images[0].hostedLargeUrl?.absoluteString
-        }
-        
-        do {
+            saveIngredientEntities(recip: recip, for: recipData)
+            saveIngredientLineEntities(recipDetail: recipDetail, for: recipData)
+            recipData.image = recip.smallImageUrls[0].stringImagetoDataImage
+            recipData.imageDetail = recipDetail.images[0].hostedLargeUrl?.absoluteString.stringImagetoDataImage
+            }
+                do {
             try AppDelegate.viewContext.save()
+            recipsFavorite = RecipEntity.fetchAll()
             presentAlert(message: "Your recip has been added in the favorite")
-        } catch  {
+            navigationItem.rightBarButtonItem?.tintColor = .red
+                } catch  {
             presentAlert(message: "Sorry, your recip can't added in the favorite")
+        }
+    }
+    
+    private func saveIngredientEntities (recip: Match, for RecipEntity: RecipEntity) {
+        for ingredient in recip.ingredients {
+            let ingredientEntity = IngredientEntity(context: AppDelegate.viewContext)
+            ingredientEntity.name = ingredient
+            ingredientEntity.recip = RecipEntity
+        }
+    }
+    
+    private func saveIngredientLineEntities(recipDetail: RecipDetail, for RecipEntity: RecipEntity) {
+        for ingredientLine in recipDetail.ingredientLines {
+            let ingredientLienEntities = IngredientLineEntity(context: AppDelegate.viewContext)
+            ingredientLienEntities.name = ingredientLine
+            ingredientLienEntities.recip = RecipEntity
         }
     }
     

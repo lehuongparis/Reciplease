@@ -16,10 +16,5 @@ class RecipSession {
             completionHandler(responseData)
         }
     }
-    
-//    func requestDetail(url: URL, completionHandler: @escaping (DataResponse<Any>) -> Void) {
-//        Alamofire.request(url).responseJSON { responseData in
-//            completionHandler(responseData)
-//        }
-//    }
+
 }

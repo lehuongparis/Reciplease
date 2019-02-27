@@ -1,0 +1,63 @@
+{
+"criteria": {
+"allowedIngredient": [
+"curry",
+"lemon",
+"salad"
+],
+"requirePictures": true,
+"q": null,
+"excludedIngredient": null
+},
+"matches": [
+{
+"imageUrlsBySize": {
+"90": "https://lh3.googleusercontent.com/rSg0eGV5sX1kaiP6xfH7pPdmi9AxgHfCyQv7O0keT1PM8mye6Gbwlq6BmsmFFr-13ngscSJSfq-36Zi7hGgZ41U=s90-c"
+},
+"sourceDisplayName": "The Grateful Grazer",
+"ingredients": [
+"avocados",
+"nutritional yeast",
+"curry",
+"chickpeas",
+"grapeseed oil",
+"curry powder",
+"cayenne pepper",
+"salt",
+"salad",
+"medium tomatoes",
+"cucumber",
+"fresh parsley",
+"lemon"
+],
+"id": "Grilled-Curry-Stuffed-Avocados-2148772",
+"smallImageUrls": [
+"https://lh3.googleusercontent.com/jBU8d9nE6g6nbPH5eo84BlfpbhRbKHljrKM2RBHG8HhQNAvU-Z0GVwmr9nmMlxtgDbFA_5HGUT6BNnjrLjv-gQ=s90"
+],
+"recipeName": "Grilled Curry Stuffed Avocados",
+"totalTimeInSeconds": 2100,
+"attributes": {
+"course": [
+"Main Dishes"
+]
+},
+"flavors": {
+"piquant": 0.3333333333333333,
+"meaty": 0.16666666666666666,
+"bitter": 0.8333333333333334,
+"sweet": 0.16666666666666666,
+"sour": 0.8333333333333334,
+"salty": 0.16666666666666666
+},
+"rating": 4
+}
+],
+"facetCounts": {},
+"totalMatchCount": 1,
+"attribution": {
+"html": "Recipe search powered by <a href='http://www.yummly.co/recipes'><img alt='Yummly' src='https://static.yummly.co/api-logo.png'/></a>",
+"url": "http://www.yummly.co/recipes/",
+"text": "Recipe search powered by Yummly",
+"logo": "https://static.yummly.co/api-logo.png"
+}
+}

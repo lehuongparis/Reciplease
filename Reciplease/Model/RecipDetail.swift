@@ -9,6 +9,7 @@
 import Foundation
 
 struct RecipDetail: Decodable {
+    let id: String
     let name: String
     let ingredientLines: [String]
     let totalTimeInSeconds: Int
@@ -24,3 +25,4 @@ struct Image: Decodable {
 struct Source: Decodable {
     let sourceRecipeUrl: String?
 }
+

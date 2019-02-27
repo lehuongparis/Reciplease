@@ -9,7 +9,7 @@
 import UIKit
 
 class RecipTableViewCell: UITableViewCell {
-
+    
     @IBOutlet weak var whiteView: UIView!
     
     override func awakeFromNib() {
@@ -28,12 +28,18 @@ class RecipTableViewCell: UITableViewCell {
     @IBOutlet weak var likeLabel: UILabel!
     @IBOutlet weak var tempLabel: UILabel!
     
-    func configure(image: UIImage, name: String, ingredients: String, temp: String, like: String) {
-        recipsImageView.image = image
-        recipNameLabel.text = name
-        ingresLabel.text = ingredients
-        tempLabel.text = temp
-        likeLabel.text = like + "k"
+    var recip: Match! {
+        didSet {
+            recipNameLabel.text = recip.recipeName
+            ingresLabel.text = recip.ingredients.joined(separator: ", ").stringToFirstCapitalLetter
+            likeLabel.text = String(recip.rating) + "k"
+            tempLabel.text = recip.totalTimeInSeconds.timeInHoursandMinutes
+            if let imageData = recip.smallImageUrls[0].stringImagetoDataImage, let image = UIImage(data: imageData) {
+                recipsImageView.image = image
+            } else {
+                recipsImageView.image = UIImage(named: "imagerecipdefault")
+            }
+        }
     }
 }
 

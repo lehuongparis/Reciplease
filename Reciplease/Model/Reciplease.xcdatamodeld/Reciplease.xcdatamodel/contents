@@ -1,4 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14315.18" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="IngredientEntity" representedClassName=".IngredientEntity" syncable="YES" codeGenerationType="category">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="recip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RecipEntiy" inverseName="ingredient" inverseEntity="RecipEntiy" syncable="YES"/>
+    </entity>
+    <entity name="IngredientLineEntity" representedClassName=".IngredientLineEntity" syncable="YES" codeGenerationType="category">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="recip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RecipEntiy" inverseName="ingredientline" inverseEntity="RecipEntiy" syncable="YES"/>
+    </entity>
+    <entity name="RecipEntiy" representedClassName=".RecipEntity" syncable="YES" codeGenerationType="category">
+        <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="duration" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="id" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="image" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="imageDetail" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="like" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="source" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="ingredient" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="IngredientEntity" inverseName="recip" inverseEntity="IngredientEntity" syncable="YES"/>
+        <relationship name="ingredientline" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="IngredientLineEntity" inverseName="recip" inverseEntity="IngredientLineEntity" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="IngredientEntity" positionX="105.66015625" positionY="-100.51953125" width="128" height="75"/>
+        <element name="IngredientLineEntity" positionX="118.0859375" positionY="131.90625" width="128" height="75"/>
+        <element name="RecipEntiy" positionX="-193.83203125" positionY="-38.01953125" width="128" height="195"/>
+    </elements>
 </model>

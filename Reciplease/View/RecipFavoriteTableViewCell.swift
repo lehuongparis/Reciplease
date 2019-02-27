@@ -11,7 +11,6 @@ import UIKit
 class RecipFavoriteTableViewCell: UITableViewCell {
 
     @IBOutlet weak var whiteView: UIView!
-    
     @IBOutlet weak var recipFavoriteNameLabel: UILabel!
     @IBOutlet weak var recipFavoriteIngresLabel: UILabel!
     @IBOutlet weak var recipFavoriteLikeLabel: UILabel!
@@ -27,12 +26,19 @@ class RecipFavoriteTableViewCell: UITableViewCell {
         whiteView.backgroundColor = UIColor.gray
     }
     
-    func configure(image: UIImage, name: String, ingredients: String, temp: String, like: String) {
-        recipFavaoriteImageView.image = image
-        recipFavoriteNameLabel.text = name
-        recipFavoriteIngresLabel.text = ingredients
-        recipFavoriteDurationLabel.text = temp
-        recipFavoriteLikeLabel.text = like + "k"
+    var recipFavorite: RecipEntity! {
+        didSet {
+            recipFavoriteNameLabel.text = recipFavorite.name
+            let ingredientEntities = recipFavorite.ingredient?.allObjects as? [IngredientEntity]
+            recipFavoriteIngresLabel.text = ingredientEntities?.map({ $0.name ?? ""
+            }).joined(separator: ", ").stringToFirstCapitalLetter
+            recipFavoriteLikeLabel.text = recipFavorite.like
+            recipFavoriteDurationLabel.text = recipFavorite.duration
+            if let imageData = recipFavorite.image {
+                recipFavaoriteImageView.image = UIImage(data: imageData)
+            } else {
+                recipFavaoriteImageView.image = UIImage(named: "imagerecipdefault")
+            }
+        }
     }
-
 }

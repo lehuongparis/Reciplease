@@ -34,6 +34,7 @@ class SearchViewController: UIViewController {
     @IBAction func searchButton() {
         if ingredients != [] {
             activityIndicatorView.isHidden = false
+            createAllowedIngre()
             getRecips()
         } else {
             presentAlert()
@@ -52,8 +53,8 @@ class SearchViewController: UIViewController {
                     allowedIngreString += "&allowedIngredient[]=" + ingredient
                 }
             }
-
-    private func getRecips() {
+ 
+     private func getRecips() {
         recipService.getRecips(allowedIngreString: allowedIngreString) { (success, recipsData) in
             if success {
                 guard let recips = recipsData else { return }
@@ -68,12 +69,13 @@ class SearchViewController: UIViewController {
     
     @IBAction func addIngreButton() {
         guard let namesString = ingreTextField.text  else { return }
-            ingredients = namesString.stringToArrayString
+            ingredients = namesString.lowercased().stringToArrayString
             ingreTableView.reloadData()
     }
     
     @IBAction func resetButton() {
         ingredients = []
+        allowedIngreString = ""
         ingreTableView.reloadData()
     }
     

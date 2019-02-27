@@ -21,6 +21,7 @@ class RecipViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         recipsTableView.reloadData()
+        recipsTableView.tableFooterView = UIView()
         activityIndicator.isHidden = true
     }
 }
@@ -36,10 +37,11 @@ extension RecipViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard indexPath.item < recipsList.count else { fatalError("Index out of range") }
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "RecipCell", for: indexPath) as? RecipTableViewCell else {
                 return UITableViewCell()
                 }
-        updateCell(cell: cell, indexPath: indexPath)
+        cell.recip = recipsList[indexPath.row]
         return cell
     }
     
@@ -70,22 +72,6 @@ extension RecipViewController: UITableViewDelegate, UITableViewDataSource {
             let detailVC = segue.destination as! RecipDetailViewController
             detailVC.recipDetailList = recipDetailList
             detailVC.recip = recip
-        }
-    }
-    
-    // MARK: - Update Cell
-    private func updateCell(cell: RecipTableViewCell, indexPath: IndexPath) {
-        
-        let name = recipsList[indexPath.row].recipeName
-        let ingredients = recipsList[indexPath.row].ingredients.joined(separator: ", ").stringToFirstCapitalLetter
-        let temp = recipsList[indexPath.row].totalTimeInSeconds.timeInHoursandMinutes
-        let like = String(recipsList[indexPath.row].rating)
-        
-        if let imageData = recipsList[indexPath.row].smallImageUrls[0].stringImagetoDataImage, let image = UIImage(data: imageData) {
-            cell.configure(image: image, name: name, ingredients: ingredients, temp: temp, like: like)
-        } else {
-            let image = UIImage(named: "imagerecipdefault")
-            cell.configure(image: image!, name: name, ingredients: ingredients, temp: temp, like: like)
         }
     }
 }
