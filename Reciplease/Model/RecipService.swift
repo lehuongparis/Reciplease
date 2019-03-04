@@ -11,13 +11,16 @@ import Alamofire
 
 class RecipService {
 
+    // MARK: - vars, lets
     let constant = Constants()
     private var recipSession: RecipSession
+    
+    // MARK: - init
     init(recipSession: RecipSession = RecipSession()) {
         self.recipSession = recipSession
     }
 
-    
+    // Mark: - Methods
     func getRecips(allowedIngreString: String, completionHandler: @escaping(Bool, Recip?)-> Void) {
         let appId: String = constant.appId
         let myAPI: String = constant.myAPI

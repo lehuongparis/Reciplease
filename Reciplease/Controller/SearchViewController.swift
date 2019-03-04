@@ -12,8 +12,8 @@ import Alamofire
 
 class SearchViewController: UIViewController {    
     
+    // MARK : - vars, lets
     private let recipService = RecipService()
-    
     var ingredients: [String] = []
     var allowedIngreString = ""
     var recipsList = [Match]()
@@ -31,6 +31,19 @@ class SearchViewController: UIViewController {
         activityIndicatorView.isHidden = true
     }
     
+    // MARK : - Outlet Actions
+    @IBAction func addIngreButton() {
+        guard let namesString = ingreTextField.text  else { return }
+        ingredients = namesString.lowercased().stringToArrayString
+        ingreTableView.reloadData()
+    }
+    
+    @IBAction func resetButton() {
+        ingredients = []
+        allowedIngreString = ""
+        ingreTableView.reloadData()
+    }
+    
     @IBAction func searchButton() {
         if ingredients != [] {
             activityIndicatorView.isHidden = false
@@ -41,6 +54,7 @@ class SearchViewController: UIViewController {
         }
     }
     
+    // MARK: - Methods
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "segueToRecip" {
             let recipVC = segue.destination as! RecipViewController
@@ -67,18 +81,6 @@ class SearchViewController: UIViewController {
             }
         }
     
-    @IBAction func addIngreButton() {
-        guard let namesString = ingreTextField.text  else { return }
-            ingredients = namesString.lowercased().stringToArrayString
-            ingreTableView.reloadData()
-    }
-    
-    @IBAction func resetButton() {
-        ingredients = []
-        allowedIngreString = ""
-        ingreTableView.reloadData()
-    }
-    
     private func presentAlert() {
         let alert = UIAlertController(title: "Error", message: "Please add your ingredients", preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .cancel, handler: nil)
@@ -87,6 +89,7 @@ class SearchViewController: UIViewController {
     }
 }
 
+// MARK : - Extension: UITableView
 extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -101,7 +104,6 @@ extension SearchViewController: UITableViewDataSource, UITableViewDelegate {
         
         let cell = ingreTableView.dequeueReusableCell(withIdentifier: "IngresCell", for: indexPath)
         let ingredient = ingredients[indexPath.row]
-        
         cell.textLabel?.text = "- " + ingredient.stringToFirstCapitalLetter
         return cell
     }

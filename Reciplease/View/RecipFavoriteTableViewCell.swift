@@ -29,7 +29,7 @@ class RecipFavoriteTableViewCell: UITableViewCell {
     var recipFavorite: RecipEntity! {
         didSet {
             recipFavoriteNameLabel.text = recipFavorite.name
-            let ingredientEntities = recipFavorite.ingredient?.allObjects as? [IngredientEntity]
+            let ingredientEntities = recipFavorite.ingredients?.allObjects as? [IngredientEntity]
             recipFavoriteIngresLabel.text = ingredientEntities?.map({ $0.name ?? ""
             }).joined(separator: ", ").stringToFirstCapitalLetter
             recipFavoriteLikeLabel.text = recipFavorite.like

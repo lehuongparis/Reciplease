@@ -10,6 +10,7 @@ import UIKit
 
 class RecipViewController: UIViewController {
     
+    // MARK: - vars, lets
     private let recipService = RecipService()
     var recip: Match?
     var recipsList = [Match]()
@@ -26,6 +27,7 @@ class RecipViewController: UIViewController {
     }
 }
 
+// MARK: - Extension UITableView
 extension RecipViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -45,7 +47,6 @@ extension RecipViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-//     Get id of recip selected
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.activityIndicator.isHidden = false
         recip = self.recipsList[indexPath.row]

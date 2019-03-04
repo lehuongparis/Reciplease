@@ -10,6 +10,7 @@ import UIKit
 
 class RecipFavoriteViewController: UIViewController {
 
+    // MARK: - vars, lets
     var recipFavorite = [RecipEntity]()
     var recipFavoriteSelected: RecipEntity?
 
@@ -33,6 +34,7 @@ class RecipFavoriteViewController: UIViewController {
     }
 }
 
+// MARK: - Extension UITableView
 extension RecipFavoriteViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1

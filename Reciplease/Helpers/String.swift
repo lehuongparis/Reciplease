@@ -34,12 +34,5 @@ extension String {
                 return nil
             }
         }
-    }
-    
-    var fixedEncodeURI: String {
-        get {
-            return self.replacingOccurrences(of: "%5B", with: "[")
-        }
-    }
-    
+    }    
 }

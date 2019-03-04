@@ -9,6 +9,8 @@
 import Foundation
 
 extension Int {
+    
+    // Change time in format hours and minutes
     var timeInHoursandMinutes: String {
         get {
             let hours = self/3600

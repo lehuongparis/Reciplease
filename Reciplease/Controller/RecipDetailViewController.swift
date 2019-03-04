@@ -11,6 +11,7 @@ import SafariServices
 
 class RecipDetailViewController: UIViewController {
     
+    // MARK: - vars, lets
     private let recipService = RecipService()
     var recipDetailList = [RecipDetail]()
     var recipDetail: RecipDetail?
@@ -37,6 +38,7 @@ class RecipDetailViewController: UIViewController {
         setRightButtonItem()
     }
 
+    // Methods
     private func setRightButtonItem() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "star"), style: .plain, target: self, action: #selector(favoriteButtonTapped))
         if RecipEntity.checkRecipSavedInData(id: recipDetail?.id ?? "") {
@@ -67,7 +69,7 @@ class RecipDetailViewController: UIViewController {
             recipData.id = recip.id
             recipData.name = recip.recipeName
             recipData.duration = recip.totalTimeInSeconds.timeInHoursandMinutes
-            recipData.like = String(recip.rating)
+            recipData.like = String(recip.rating) + "k"
             recipData.source = recipDetail.source.sourceRecipeUrl
             saveIngredientEntities(recip: recip, for: recipData)
             saveIngredientLineEntities(recipDetail: recipDetail, for: recipData)
@@ -84,19 +86,19 @@ class RecipDetailViewController: UIViewController {
         }
     }
     
-    private func saveIngredientEntities (recip: Match, for RecipEntity: RecipEntity) {
+    private func saveIngredientEntities (recip: Match, for recipEntity: RecipEntity) {
         for ingredient in recip.ingredients {
             let ingredientEntity = IngredientEntity(context: AppDelegate.viewContext)
             ingredientEntity.name = ingredient
-            ingredientEntity.recip = RecipEntity
+            ingredientEntity.recip = recipEntity
         }
     }
     
-    private func saveIngredientLineEntities(recipDetail: RecipDetail, for RecipEntity: RecipEntity) {
+    private func saveIngredientLineEntities(recipDetail: RecipDetail, for recipEntity: RecipEntity) {
         for ingredientLine in recipDetail.ingredientLines {
             let ingredientLienEntities = IngredientLineEntity(context: AppDelegate.viewContext)
             ingredientLienEntities.name = ingredientLine
-            ingredientLienEntities.recip = RecipEntity
+            ingredientLienEntities.recip = recipEntity
         }
     }
     
@@ -136,6 +138,7 @@ class RecipDetailViewController: UIViewController {
     }
 }
 
+// Mark: -  Extention UITableView
 extension RecipDetailViewController: UITableViewDataSource, UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {

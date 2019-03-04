@@ -28,6 +28,7 @@ class CustomTabBar: UITabBarController {
         topLine.backgroundColor = UIColor.white.cgColor
         tabBar.layer.addSublayer(topLine)
     
+        // Add separator line for Tab Bar
         let separatorLine = CALayer()
         separatorLine.frame = CGRect(x: tabBar.frame.width/2, y: 0, width: 1, height: tabBar.frame.height)
         separatorLine.backgroundColor = UIColor.white.cgColor

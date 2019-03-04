@@ -38,7 +38,7 @@
 		3E546116221FEAE1007194DD /* RecipServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E546115221FEAE1007194DD /* RecipServiceTests.swift */; };
 		3E6B60C022268377002844B2 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E6B60BF22268377002844B2 /* Alamofire.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		3E6B60C222268D23002844B2 /* RecipServiceDetailTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B60C122268D23002844B2 /* RecipServiceDetailTests.swift */; };
-		3E6B60C522269D50002844B2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B60C422269D50002844B2 /* Constants.swift */; };
+		3E6B60C72226D26F002844B2 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6B60C62226D26F002844B2 /* Constants.swift */; };
 		3EB3317021DE327900E25DFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB3316F21DE327900E25DFE /* AppDelegate.swift */; };
 		3EB3317221DE327900E25DFE /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EB3317121DE327900E25DFE /* SearchViewController.swift */; };
 		3EB3317521DE327900E25DFE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3EB3317321DE327900E25DFE /* Main.storyboard */; };
@@ -93,7 +93,7 @@
 		3E546115221FEAE1007194DD /* RecipServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipServiceTests.swift; sourceTree = "<group>"; };
 		3E6B60BF22268377002844B2 /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E6B60C122268D23002844B2 /* RecipServiceDetailTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipServiceDetailTests.swift; sourceTree = "<group>"; };
-		3E6B60C422269D50002844B2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		3E6B60C62226D26F002844B2 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		3EB3316C21DE327900E25DFE /* Reciplease.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Reciplease.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3EB3316F21DE327900E25DFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3EB3317121DE327900E25DFE /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -136,7 +136,7 @@
 				3E493E8922050D8A000DE5B0 /* CustomTextField.swift */,
 				3E493E8B2205F781000DE5B0 /* String.swift */,
 				3E493E8F22089562000DE5B0 /* Int.swift */,
-				3E6B60C422269D50002844B2 /* Constants.swift */,
+				3E6B60C62226D26F002844B2 /* Constants.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -446,7 +446,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3E6B60C522269D50002844B2 /* Constants.swift in Sources */,
+				3E6B60C72226D26F002844B2 /* Constants.swift in Sources */,
 				3E5460E42214281F007194DD /* RecipDetailFavoriteViewController.swift in Sources */,
 				3E493E8C2205F781000DE5B0 /* String.swift in Sources */,
 				3E32BAB621EF655100A01919 /* Recip.swift in Sources */,

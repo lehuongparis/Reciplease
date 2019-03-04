@@ -10,6 +10,7 @@ import UIKit
 
 class GradientImageView: UIImageView {
     
+    // Add grandient Layer for ImageView
     func addGrandient() {
         let gradient: CAGradientLayer = CAGradientLayer()
         gradient.frame = self.bounds

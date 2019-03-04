@@ -11,6 +11,7 @@ import SafariServices
 
 class RecipDetailFavoriteViewController: UIViewController {
    
+    // MARK: - vars, lets
     var recipsList = [RecipEntity]()
     var recipDetailFavoriteSelected: RecipEntity?
     var ingredientLinesFavoriteSelected = [String]()
@@ -32,6 +33,21 @@ class RecipDetailFavoriteViewController: UIViewController {
         recipComment()
     }
     
+    // MARK: - Outlet actions
+    @IBAction func addRecipCommentButton() {
+        alertAddComment()
+        commentButton.isHidden = true
+        recipCommentLabel.isHidden = false
+    }
+    
+    @IBAction func getDirectionButton() {
+        let urlString = recipDetailFavoriteSelected?.source
+        guard let url = URL(string: urlString ?? "") else { return }
+        let safariVC = SFSafariViewController(url: url)
+        present(safariVC, animated: true)
+    }
+    
+    // MARK: - Methods
     func recipComment() {
         if checkRecipHadComment() {
             commentButton.isHidden = true
@@ -39,12 +55,6 @@ class RecipDetailFavoriteViewController: UIViewController {
         } else {
             recipCommentLabel.isHidden = true
         }
-    }
-    
-    @IBAction func addRecipCommentButton() {
-        alertAddComment()
-        commentButton.isHidden = true
-        recipCommentLabel.isHidden = false
     }
     
     private func alertAddComment() {
@@ -77,7 +87,7 @@ class RecipDetailFavoriteViewController: UIViewController {
     }
     
     private func getIngredientLines() {
-        if let recipDetailFavoriteSelected = recipDetailFavoriteSelected, let ingredientLineEntities = recipDetailFavoriteSelected.ingredientline?.allObjects as? [IngredientLineEntity] {
+        if let recipDetailFavoriteSelected = recipDetailFavoriteSelected, let ingredientLineEntities = recipDetailFavoriteSelected.ingredientlines?.allObjects as? [IngredientLineEntity] {
             ingredientLinesFavoriteSelected = ingredientLineEntities.map({ $0.name ?? "" })
                 } else {
                 presentAlert(message: "No Ingredient Lines available")
@@ -113,15 +123,9 @@ class RecipDetailFavoriteViewController: UIViewController {
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
     }
-    
-    @IBAction func getDirectionButton() {
-        let urlString = recipDetailFavoriteSelected?.source
-        guard let url = URL(string: urlString ?? "") else { return }
-        let safariVC = SFSafariViewController(url: url)
-        present(safariVC, animated: true)
-    }
 }
 
+// MARK: - Extension UITableView
 extension RecipDetailFavoriteViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {

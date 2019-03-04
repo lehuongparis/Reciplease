@@ -2,11 +2,11 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14315.18" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="IngredientEntity" representedClassName=".IngredientEntity" syncable="YES" codeGenerationType="category">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="recip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RecipEntiy" inverseName="ingredient" inverseEntity="RecipEntiy" syncable="YES"/>
+        <relationship name="recip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RecipEntiy" inverseName="ingredients" inverseEntity="RecipEntiy" syncable="YES"/>
     </entity>
     <entity name="IngredientLineEntity" representedClassName=".IngredientLineEntity" syncable="YES" codeGenerationType="category">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="recip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RecipEntiy" inverseName="ingredientline" inverseEntity="RecipEntiy" syncable="YES"/>
+        <relationship name="recip" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RecipEntiy" inverseName="ingredientlines" inverseEntity="RecipEntiy" syncable="YES"/>
     </entity>
     <entity name="RecipEntiy" representedClassName=".RecipEntity" syncable="YES" codeGenerationType="category">
         <attribute name="comment" optional="YES" attributeType="String" syncable="YES"/>
@@ -17,8 +17,8 @@
         <attribute name="like" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="source" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="ingredient" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="IngredientEntity" inverseName="recip" inverseEntity="IngredientEntity" syncable="YES"/>
-        <relationship name="ingredientline" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="IngredientLineEntity" inverseName="recip" inverseEntity="IngredientLineEntity" syncable="YES"/>
+        <relationship name="ingredientlines" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="IngredientLineEntity" inverseName="recip" inverseEntity="IngredientLineEntity" syncable="YES"/>
+        <relationship name="ingredients" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="IngredientEntity" inverseName="recip" inverseEntity="IngredientEntity" syncable="YES"/>
     </entity>
     <elements>
         <element name="IngredientEntity" positionX="105.66015625" positionY="-100.51953125" width="128" height="75"/>

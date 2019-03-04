@@ -16,7 +16,7 @@ class CustomButton: UIButton {
     }
     
     private func setup() {
-        self.backgroundColor = UIColor.green
+        self.backgroundColor = UIColor(red: 0.00, green: 0.40, blue: 0.06, alpha: 1.0)
         self.setTitleColor(UIColor.white, for: .normal)
     }
 }
